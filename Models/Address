@@ -1,0 +1,9 @@
+class Address:
+
+    def __init__(self, addressID, address, city, state, zipCode):
+        self.addressID = addressID
+        self.address = address
+        self.city = city
+        self.state = state
+        self.zipCode = zipCode
+
