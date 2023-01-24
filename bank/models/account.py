@@ -1,6 +1,6 @@
 from pydantic import BaseModel
-from edgecapstone.models.address import Address
-from edgecapstone.models.customer import Customer
+from bank.models.address import Address
+from bank.models.customer import Customer
 
 class Account(BaseModel):
     id: int

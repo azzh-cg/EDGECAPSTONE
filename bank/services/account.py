@@ -1,6 +1,6 @@
 
-from edgecapstone.models.account import Account
-from edgecapstone.repositories.account import AccountRepository
+from bank.models.account import Account
+from bank.repositories.account import AccountRepository
 
 
 class AccountService():

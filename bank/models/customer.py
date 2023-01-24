@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from edgecapstone.models.address import Address
+from bank.models.address import Address
 
 class Customer(BaseModel):
     id: int
