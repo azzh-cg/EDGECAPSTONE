@@ -1,7 +1,6 @@
 class Account:
     
-    def __init__(self, accountID, accountNum, customerID, currentBalance):
-        self.accountID = accountID
-        self.accountNum = accountNum
-        self.customerID = customerID
+    def __init__(self, currentBalance):
+        #self.accountNum = accountNum
+        #self.customerID = customerID
         self.currentBalance = currentBalance
