@@ -5,7 +5,3 @@ class Address(BaseModel):
     address: str
     city: str
     zipcode: str
-
-    def __eq__(self, other):
-        return self.id == other.id and self.address == other.address and \
-            self.city == other.city and self.zipcode == other.zipCode
