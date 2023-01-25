@@ -1,6 +1,8 @@
 
 from bank.models.account import Account
 from bank.repositories.account import AccountRepository
+from bank.repositories.address import AddressRepository
+from bank.repositories.customer import CustomerRepository
 
 
 
@@ -15,7 +17,7 @@ class AccountService():
         account.customer.address = self.inserted_address
         self.inserted_customer = self.customer_repository.insert(account.customer)
         account.customer = self.inserted_customer
-        self.inserted_account = self.account_repository(account.customer)
+        self.inserted_account = self.account_repository.insert(account.customer)
         return self.inserted_account
 
     def get_one(self, account_number):

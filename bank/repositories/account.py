@@ -22,8 +22,7 @@ class AccountRepository():
     def insert(self, account: Account):
         with self.connection.cursor() as cursor:
             cursor.execute("""
-                INSERT into Account
-                SET (account_number, Customer_ID, current_balance)
+                INSERT INTO Account (account_number, Customer_ID, current_balance)
                 VALUES (%(account_number)s, %(customer_id)s, %(opening_balance)s);
                 """),{
                     'account_number': account.account_number,
