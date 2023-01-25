@@ -6,7 +6,3 @@ class Account(BaseModel):
     account_number: int
     customer: Customer
     currentBalance: int
-
-    def __eq__(self, other):
-        return self.id == other.id and self.account_number == other.account_number and \
-        self.current_balance == other.current_balance

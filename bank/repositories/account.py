@@ -14,9 +14,9 @@ class AccountRepository():
     # establish a connection
     connection = psycopg2.connect(
         host="localhost",
-        database="psycopgtest",
+        database="capstone",
         user="postgres",
-        password="Password123",
+        password="password123",
     )
 
     def insert(self, account: Account):

@@ -6,9 +6,9 @@ class CustomerRepository():
     # establish a connection
     connection = psycopg2.connect(
         host="localhost",
-        database="psycopgtest",
+        database="capstone",
         user="postgres",
-        password="Password123",
+        password="password123",
     )
 
     connection.set_session(autocommit=True)
