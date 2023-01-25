@@ -4,8 +4,10 @@ from bank.repositories.account import AccountRepository
 
 
 class AccountService():
-    def __init__(self, account_repository: AccountRepository):
+    def __init__(self, account_repository: AccountRepository, address_repository : AddressRepository, customer_repository : CustomerRepository):
         self.account_repository = account_repository
+        self.address_repository = address_repository
+        self.customer_repository = customer_repository
 
     def add_new(self, account: Account)
         self.inserted_address = self.address_repository.insert(account.customer.address)

@@ -1,6 +1,7 @@
-from pydantic import BaseModel
+import unittest
 from bank.models.address import Address
 from bank.models.customer import Customer
+from bank.repositories.address import AddressRepository
 from bank.repositories.customer import CustomerRepository
 
 class TestCustomerRepository(unittest.TestCase):

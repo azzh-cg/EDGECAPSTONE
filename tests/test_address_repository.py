@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+import unittest
 from bank.models.address import Address
 from bank.repositories.address import AddressRepository
 

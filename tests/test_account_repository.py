@@ -1,12 +1,16 @@
-from pydantic import BaseModel
+import unittest
 from bank.models.address import Address
 from bank.models.customer import Customer
 from bank.models.account import Account
+from bank.repositories.address import AddressRepository
 from bank.repositories.account import AccountRepository
+from bank.repositories.customer import CustomerRepository
 
-class TestCustomerRepository(unittest.TestCase):
+class TestAccountRepository(unittest.TestCase):
     def setUp(self):
+        self.addressRepository = AddressRepository()
         self.customerRepository = CustomerRepository()
+        self.addressRepository = AccountRepository()
         
 
     def tearDown(self):
