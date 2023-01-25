@@ -1,5 +1,6 @@
 import psycopg2
 from psycopg2 import sql
+from bank.models.address import Address
 
 class AddressRepository():
     # establish a connection
@@ -15,16 +16,15 @@ class AddressRepository():
 
 
     def insert(self, address: Address):
-        with connection.cursor() as cursor:
+        with self.connection.cursor() as cursor:
             cursor.execute("""
             INSERT into Address
             SET (Address, City, Street, Zipcode)
-            VALUES (%(address)s, %(city)s, %(street)s, %(zipcode)s,)
+            VALUES (%(address)s, %(city)s, %(zipcode)s,)
             RETURNING ID
             """),{
                 'address': address.address,
                 'city': address.city,
-                'street': address.street,
                 'zipcode': address.zipcode
 
             }

@@ -1,5 +1,6 @@
 import psycopg2
 from psycopg2 import sql
+from bank.models.customer import Customer
 
 class CustomerRepository():
     # establish a connection
@@ -15,17 +16,16 @@ class CustomerRepository():
 
 
     def insert(self, customer: Customer):
-        with connection.cursor() as cursor:
+        with self.connection.cursor() as cursor:
             cursor.execute("""
                 INSERT into Customer
                 SET (first_name, last_name, Address_ID, email)
-                VALUES (%(firstName)s, %(lastName)s, %(addressID)s, %(email)s,)
+                VALUES (%(first_name)s, %(last_name)s, %(address_id)s, %(email)s,)
                 """),{
-                    'firstName': customer.firstName,
-                    'lastName': customer.lastName,
-                    'addressID': customer.address.id,
+                    'first_name': customer.first_name,
+                    'last_name': customer.last_name,
+                    'address_id': customer.address.id,
                     'email': customer.email
                 }
-            connection.commit()
             customer.id = cursor.fetchone()[0]
         return customer
