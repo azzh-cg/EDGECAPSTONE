@@ -27,11 +27,11 @@ class AccountService():
     def get_all(self):
         return self.account_repository.get_all()
 
-    def withdrawal(self, account_number):
-        return self.account_repository.execute_withdrawal(account_number)
+    def withdrawal(self, account_number, withdrawal_amt):
+        return self.account_repository.execute_withdrawal(account_number, withdrawal_amt)
 
-    def deposit(self, account_number):
-        return self.account_repository.execute_deposit(account_number)
+    def deposit(self, account_number, deposit_amt):
+        return self.account_repository.execute_deposit(account_number, deposit_amt)
     
     def close_account(self, account_number):
         return self.account_repository.close_account(account_number)
