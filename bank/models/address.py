@@ -4,4 +4,5 @@ class Address(BaseModel):
     id: int
     address: str
     city: str
+    state: str
     zipcode: str
