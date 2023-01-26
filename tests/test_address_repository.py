@@ -14,12 +14,12 @@ class TestAddressRepository(unittest.TestCase):
         self.inserted_address = self.addressRepository.insert(Address(id=0, address="1234 Lane Rd", city='Los Angeles', state='California', zipcode=90210))
         self.assertEqual("1234 Lane Rd", self.inserted_address.address)
 
-    def test_delete(self):
+    #def test_delete(self):
         #self.inserted_address = self.addressRepository.insert(Address(id=0, address="1234 Lane Rd", city='Los Angeles', state='California', zipcode=90210 ))
         #self.addressRepository.delete(self.inserted_address.id)
         #what to assert?
         #self.assertTrue()
     
-    if __name__ == "__main__":
-        unittest.main()
+if __name__ == "__main__":
+    unittest.main()
     
