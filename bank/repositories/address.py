@@ -19,7 +19,7 @@ class AddressRepository():
             cursor.execute("""
             INSERT INTO Address
             (address, city, state, zipcode)
-            VALUES (%(address)s, %(city)s, %(state)s %(zipcode)s,)
+            VALUES (%(address)s, %(city)s, %(state)s, %(zipcode)s)
             RETURNING ID
             """, {
                 'address': address.address,
