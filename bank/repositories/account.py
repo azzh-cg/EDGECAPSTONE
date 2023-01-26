@@ -24,11 +24,11 @@ class AccountRepository():
             cursor.execute("""
                 INSERT INTO Account (account_number, Customer_ID, current_balance)
                 VALUES (%(account_number)s, %(customer_id)s, %(opening_balance)s);
-                """),{
+                """,{
                     'account_number': account.account_number,
                     'customer_id': account.customer.id,
                     'opening_balance': account.currentBalance
-                }
+                })
             account.id = cursor.fetchone()[0]
             return account
 
