@@ -20,18 +20,21 @@ class AccountService():
         self.inserted_account = self.account_repository.insert(account.customer)
         return self.inserted_account
 
-    def get_one(self, account_number):
-        account = self.account_repository.get_by_number(account_number)
+    def get_one(self, account: Account):
+        account = self.account_repository.get_by_number(account.account_number)
         return account
 
     def get_all(self):
         return self.account_repository.get_all()
 
-    def withdrawal(self, account_number, withdrawal_amt):
-        return self.account_repository.execute_withdrawal(account_number, withdrawal_amt)
+    def withdrawal(self, account: Account, withdrawal_amt):
+        return self.account_repository.execute_withdrawal(account.account_number, withdrawal_amt)
 
-    def deposit(self, account_number, deposit_amt):
-        return self.account_repository.execute_deposit(account_number, deposit_amt)
+    def deposit(self, account: Account, deposit_amt):
+        return self.account_repository.execute_deposit(account.account_number, deposit_amt)
     
-    def close_account(self, account_number):
-        return self.account_repository.close_account(account_number)
+    def close_account(self, account: Account):
+        self.account_repository.delete(account.id)
+        self.customer_repository.delete(account.customer.id)
+        self.address_repository.delete(account.customer.address.id)
+        return "delete successful"
