@@ -10,7 +10,7 @@ app = FastAPI()
 account_repository = AccountRepository()
 address_repository = AddressRepository()
 customer_repository = CustomerRepository()
-account_service = AccountService(address_repository, account_repository, customer_repository)
+account_service = AccountService(account_repository, address_repository, customer_repository)
 
 
 @app.get('/api/accounts')
@@ -26,7 +26,7 @@ async def retrieve_account_by_num(account_number):
 @app.post("/account/")
 async def create_account(account:Account):
     account_service.add_new(account)
-    return {"Account: {account.first_name} {account.last_name}"}
+    return {"Account: {account.account_number} {account.current_balance}"}
 
 # if __name__ == "__main__":
 #     uvicorn.run("app:app", host="127.0.0.1", port=8080, reload=True,
@@ -49,5 +49,5 @@ async def root():
 #     uvicorn.run(app, host="127.0.0.1", port=5049)
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="127.0.0.1", port=8080, reload=True,
+    uvicorn.run("app:app", host="127.0.0.1", port=5049, reload=True,
                 timeout_keep_alive=3600, workers=10)
