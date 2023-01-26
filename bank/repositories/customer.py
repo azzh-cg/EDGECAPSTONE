@@ -29,3 +29,12 @@ class CustomerRepository():
             )
             customer.id = cursor.fetchone()[0]
         return customer
+
+    def delete(self, id):
+        with self.connection.cursor() as cursor:
+            cursor.execute("""
+                    DELETE FROM Customer WHERE ID=%(id)s
+                    """, {
+                'id': id
+            }
+            )

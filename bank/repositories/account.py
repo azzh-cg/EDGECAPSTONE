@@ -1,3 +1,4 @@
+from multiprocessing import connection
 import psycopg2
 from psycopg2 import sql
 from bank.models.account import Account
@@ -24,13 +25,22 @@ class AccountRepository():
             cursor.execute("""
                 INSERT INTO Account (account_number, Customer_ID, current_balance)
                 VALUES (%(account_number)s, %(customer_id)s, %(opening_balance)s);
-                """,{
-                    'account_number': account.account_number,
-                    'customer_id': account.customer.id,
-                    'opening_balance': account.currentBalance
-                })
+                """, {
+                'account_number': account.account_number,
+                'customer_id': account.customer.id,
+                'opening_balance': account.currentBalance
+            })
             account.id = cursor.fetchone()[0]
             return account
+
+    def delete(self, id):
+        with self.connection.cursor() as cursor:
+            cursor.execute("""
+                    DELETE FROM Account WHERE ID=%(id)s
+                    """, {
+                'id': id
+            }
+            )
 
     # def retrieve_all_accounts():
     #     with connection.cursor() as cursor:

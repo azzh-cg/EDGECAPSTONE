@@ -31,3 +31,12 @@ class AddressRepository():
             )
             address.id = cursor.fetchone()[0]
         return address
+
+    def delete(self, id):
+        with self.connection.cursor() as cursor:
+            cursor.execute("""
+                    DELETE FROM Address WHERE ID=%(id)s
+                    """, {
+                'id': id
+            }
+            )
