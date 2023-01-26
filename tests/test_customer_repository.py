@@ -10,8 +10,8 @@ class TestCustomerRepository(unittest.TestCase):
         self.addressRepository = AddressRepository()
         
 
-    def tearDown(self):
-        self.customerRepository.delete(self.inserted_customer.id)
+    #def tearDown(self):
+     #   self.customerRepository.delete(self.inserted_customer.id)
 
     def test_insert(self):
         self.inserted_address = self.addressRepository.insert(Address(id=0, address="1234 Lane Rd", city='Los Angeles', state='California', zipcode=90210))

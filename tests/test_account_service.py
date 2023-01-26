@@ -9,14 +9,14 @@ from bank.repositories.customer import CustomerRepository
 from bank.services.account import AccountService
 
 
-class TestOrderService(unittest.TestCase):
+class TestAccountService(unittest.TestCase):
     def setUp(self):
-        self.inserted_address = Address(id=0, address="1234 Lane Rd", city='Los Angeles', state='California', zipcode=90210)
+        self.inserted_address = Address(id=0, address="1234 Lane Rd", city='Los Angeles', state='California', zipcode='90210')
         self.inserted_customer = Customer(id=0, first_name = "Jane", last_name="Doe", address = self.inserted_address, email = "janedoe@gmail.com")
         self.inserted_account = Account(id=0, account_number=0, customer=self.inserted_customer, current_balance=25)
-        self.addressRepository = Mock()
-        self.customerRepository = Mock()
-        self.accountRepository = Mock()
+        self.addressRepository = AddressRepository()
+        self.customerRepository = CustomerRepository()
+        self.accountRepository = AccountRepository()
         self.accountService = AccountService(self.accountRepository, self.addressRepository, self.customerRepository)
     
     def tearDown(self):

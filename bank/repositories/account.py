@@ -24,11 +24,12 @@ class AccountRepository():
         with self.connection.cursor() as cursor:
             cursor.execute("""
                 INSERT INTO Account (account_number, Customer_ID, current_balance)
-                VALUES (%(account_number)s, %(customer_id)s, %(opening_balance)s);
+                VALUES (%(account_number)s, %(customer_id)s, %(current_balance)s)
+                RETURNING ID;
                 """, {
                 'account_number': account.account_number,
                 'customer_id': account.customer.id,
-                'opening_balance': account.currentBalance
+                'current_balance': account.current_balance
             })
             account.id = cursor.fetchone()[0]
             return account

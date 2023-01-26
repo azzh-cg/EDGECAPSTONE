@@ -5,4 +5,4 @@ class Account(BaseModel):
     id: int
     account_number: int
     customer: Customer
-    currentBalance: int
+    current_balance: int

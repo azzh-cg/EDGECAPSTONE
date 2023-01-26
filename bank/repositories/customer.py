@@ -19,7 +19,8 @@ class CustomerRepository():
             cursor.execute("""
                 INSERT INTO Customer
                 (first_name, last_name, Address_ID, email)
-                VALUES (%(first_name)s, %(last_name)s, %(address_id)s, %(email)s,)
+                VALUES (%(first_name)s, %(last_name)s, %(address_id)s, %(email)s)
+                RETURNING ID
                 """, {
                 'first_name': customer.first_name,
                 'last_name': customer.last_name,

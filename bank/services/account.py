@@ -17,7 +17,7 @@ class AccountService():
         account.customer.address = self.inserted_address
         self.inserted_customer = self.customer_repository.insert(account.customer)
         account.customer = self.inserted_customer
-        self.inserted_account = self.account_repository.insert(account.customer)
+        self.inserted_account = self.account_repository.insert(account)
         return self.inserted_account
 
     def get_one(self, account: Account):
