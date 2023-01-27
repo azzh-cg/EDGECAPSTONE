@@ -18,7 +18,7 @@ async def retrieve_accounts():
     responses = account_service.get_all()
     return responses
 
-@app.get('api/account/{account_number}')
+@app.get('/api/account/{account_number}')
 async def retrieve_account_by_num(account_number):
    responses = account_service.get_account(account_number)
    return responses

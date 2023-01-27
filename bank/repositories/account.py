@@ -45,11 +45,12 @@ class AccountRepository():
             }
             )
 
-    def retrieve_all_accounts():
-        with connection.cursor() as cursor:
+    def retrieve_all_accounts(self):
+        with self.connection.cursor() as cursor:
              cursor.execute("""
              SELECT * FROM Account
              """)
+             return cursor.fetchall()
 
     def get_by_number(self,account_num):
         with self.connection.cursor() as cursor:
@@ -57,6 +58,7 @@ class AccountRepository():
             SELECT * FROM Account WHERE account_number = %(account_num)s
             """,
             {'account_num': account_num})
+            return cursor.fetchone()
 
     # def execute_withdrawal(accountNum, withdrawal):
     #     with connection.cursor() as cursor:

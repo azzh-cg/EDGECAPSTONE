@@ -21,8 +21,7 @@ class AccountService():
         return self.inserted_account
 
     def get_account(self, account_number):
-        account = self.account_repository.get_by_number(account_number)
-        return account
+        return self.account_repository.get_by_number(account_number)
 
     def get_all(self):
         return self.account_repository.retrieve_all_accounts()
