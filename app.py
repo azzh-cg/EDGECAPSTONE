@@ -30,17 +30,17 @@ async def create_account(account:Account):
     return account_service.add_new(account)
 
 @app.post("/account/withdrawal")
-async def withdrawal(account:Account, withdrawal_amt):
-    if(withdrawal_amt < 0):
+async def withdrawal(account_number, withdrawal_amt):
+    if(int(withdrawal_amt) < 0):
         return Exception("Withdrawal amount must be positive")
-    return account_service.withdrawal(account, withdrawal_amt)
+    return account_service.withdrawal(account_number, int(withdrawal_amt))
 
 @app.post("/account/deposit")
 async def deposit(account_number, deposit_amt):
-    if(deposit_amt<0):
+    if(int(deposit_amt)<0):
         raise Exception("Deposit must be greater than 0")
     else:
-        return account_service.deposit(account_number, deposit_amt)
+        return account_service.deposit(account_number, int(deposit_amt))
 
 
 

@@ -69,14 +69,13 @@ class AccountRepository():
              """, {
                 'accountNum': accountNum
             })
-            current_balance = cursor.fetchone().current_balance
+            current_balance = cursor.fetchone()[0]
             updated_balance = current_balance
             if (current_balance >= withdrawal):
                 updated_balance = current_balance - withdrawal
                 cursor.execute("""
                 UPDATE Account
-                SET current_balance
-                VALUES (%(updated_balance)s)
+                SET current_balance = %(updated_balance)s
                 WHERE account_number = %(accountNum)s
                 """,{
                     'updated_balance':updated_balance,
@@ -91,14 +90,14 @@ class AccountRepository():
             cursor.execute("""
             SELECT current_balance FROM Account WHERE account_number = %(account_num)s
             """,{'account_num': accountNum})
-        current_balance = cursor.fetchone().current_balance
-        cursor.execute("""
-            UPDATE Account
-            SET current_balance
-            VALUES (%(current_balance)s + %(deposit)s);
-            RETURNING current_balance
-            """,{'current_balance': current_balance, 'deposit': deposit})
-        return cursor.fetchone()[0]
+            current_balance = cursor.fetchone()[0]
+            updated_balance = current_balance + deposit
+            cursor.execute("""
+                UPDATE Account
+                SET current_balance = %(updated_balance)s
+                RETURNING current_balance
+                """,{'updated_balance':updated_balance})
+            return updated_balance
     # def close_account(accountNum):
     #     try:
     #         with connection.cursor() as cursor:
