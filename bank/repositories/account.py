@@ -49,11 +49,12 @@ class AccountRepository():
     #         SELECT * FROM Account
     #         """)
 
-    # def retrieve_specific_account(accountNum):
-    #     with connection.cursor() as cursor:
-    #         cursor.execute("""
-    #         SELECT * FROM Account WHERE account_number = %(accountNum)s
-    #         """)
+    def get_by_number(self,account_num):
+        with self.connection.cursor() as cursor:
+            cursor.execute("""
+            SELECT * FROM Account WHERE account_number = %(account_num)s
+            """,
+            {'account_num': account_num})
 
     # def execute_withdrawal(accountNum, withdrawal):
     #     with connection.cursor() as cursor:

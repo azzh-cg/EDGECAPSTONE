@@ -20,8 +20,8 @@ class AccountService():
         self.inserted_account = self.account_repository.insert(account)
         return self.inserted_account
 
-    def get_one(self, account: Account):
-        account = self.account_repository.get_by_number(account.account_number)
+    def get_account(self, account_number):
+        account = self.account_repository.get_by_number(account_number)
         return account
 
     def get_all(self):
