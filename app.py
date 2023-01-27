@@ -27,6 +27,10 @@ async def retrieve_account_by_num(account_number):
 async def create_account(account:Account):
     return account_service.add_new(account)
 
+@app.post("/account/withdrawal")
+async def withdrawal(account:Account, withdrawal_amt):
+    return account_service.withdrawal(account, withdrawal_amt)
+
 
 
 # if __name__ == "__main__":
