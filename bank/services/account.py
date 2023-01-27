@@ -29,8 +29,8 @@ class AccountService():
     def withdrawal(self, account: Account, withdrawal_amt):
         return self.account_repository.execute_withdrawal(account.account_number, withdrawal_amt)
 
-    def deposit(self, account: Account, deposit_amt):
-        return self.account_repository.execute_deposit(account.account_number, deposit_amt)
+    def deposit(self, account_number, deposit_amt):
+        return self.account_repository.execute_deposit(account_number, deposit_amt)
     
     def close_account(self, account: Account):
         self.account_repository.delete(account.id)

@@ -84,19 +84,19 @@ class AccountRepository():
                 })
         return updated_balance
 
-    # def execute_deposit(accountNum, deposit):
-    #     with connection.cursor() as cursor:
-    #         cursor.execute("""
-    #         SELECT current_balance FROM Account WHERE account_number = %(accountNum)s
-    #         """)
-    #     current_balance = cursor.fetchone().current_balance
-    #     cursor.execute("""
-    #         UPDATE Account
-    #         SET current_balance
-    #         VALUES (%(current_balance)s + %(deposit)s);
-    #         """)
-    #     connection.commit()
-
+    def execute_deposit(self, accountNum, deposit):
+        with self.connection.cursor() as cursor:
+            cursor.execute("""
+            SELECT current_balance FROM Account WHERE account_number = %(account_num)s
+            """,{'account_num': accountNum})
+        current_balance = cursor.fetchone().current_balance
+        cursor.execute("""
+            UPDATE Account
+            SET current_balance
+            VALUES (%(current_balance)s + %(deposit)s);
+            RETURNING current_balance
+            """,{'current_balance': current_balance, 'deposit': deposit})
+        return cursor.fetchone()[0]
     # def close_account(accountNum):
     #     try:
     #         with connection.cursor() as cursor:
