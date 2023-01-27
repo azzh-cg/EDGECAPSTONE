@@ -7,6 +7,9 @@ from bank.repositories.account import AccountRepository
 from bank.repositories.customer import CustomerRepository
 
 class TestAccountRepository(unittest.TestCase):
+    inserted_address = Address(id=0, address="", city="", state="", zipcode="")
+    inserted_customer = Customer(id=0, first_name="", last_name="", address=inserted_address, email="")
+    inserted_account = Account(id=0, account_number=0, customer=inserted_customer, current_balance=0)
     def setUp(self):
         self.addressRepository = AddressRepository()
         self.customerRepository = CustomerRepository()
@@ -14,7 +17,9 @@ class TestAccountRepository(unittest.TestCase):
         
 
     def tearDown(self):
-        self.customerRepository.delete(self.inserted_address.id)
+        self.accountRepository.delete(self.inserted_account.id)
+        self.customerRepository.delete(self.inserted_customer.id)
+        self.addressRepository.delete(self.inserted_address.id)
 
     def test_insert(self):
         self.inserted_address = self.addressRepository.insert(Address(id=0, address="1234 Lane Rd", city='Los Angeles', state='California', zipcode='90210'))

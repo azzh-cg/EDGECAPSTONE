@@ -25,8 +25,7 @@ async def retrieve_account_by_num(account_number):
 
 @app.post("/account/")
 async def create_account(account:Account):
-    account_service.add_new(account)
-    return {"Account: {account.account_number} {account.current_balance}"}
+    return account_service.add_new(account)
 
 # if __name__ == "__main__":
 #     uvicorn.run("app:app", host="127.0.0.1", port=8080, reload=True,

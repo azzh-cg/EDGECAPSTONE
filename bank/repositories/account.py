@@ -1,4 +1,5 @@
 from multiprocessing import connection
+from re import T
 import psycopg2
 from psycopg2 import sql
 from bank.models.account import Account
@@ -19,11 +20,12 @@ class AccountRepository():
         user="postgres",
         password="password123",
     )
+    connection.set_session(autocommit=True)
 
     def insert(self, account: Account):
         with self.connection.cursor() as cursor:
             cursor.execute("""
-                INSERT INTO Account (account_number, Customer_ID, current_balance)
+                INSERT INTO Account (account_number, customer_ID, current_balance)
                 VALUES (%(account_number)s, %(customer_id)s, %(current_balance)s)
                 RETURNING ID;
                 """, {
