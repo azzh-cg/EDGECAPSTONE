@@ -58,9 +58,9 @@ class AccountRepository():
     #         SELECT * FROM Account WHERE account_number = %(accountNum)s
     #         """)
 
-    def execute_withdrawal(accountNum, withdrawal):
+    def execute_withdrawal(self, accountNum, withdrawal):
         updated_balance = 0
-        with connection.cursor() as cursor:
+        with self.connection.cursor() as cursor:
             cursor.execute("""
              SELECT current_balance FROM Account WHERE account_number = %(accountNum)s
              """, {
