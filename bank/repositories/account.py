@@ -1,5 +1,6 @@
 from multiprocessing import connection
 from re import T
+from turtle import update
 import psycopg2
 from psycopg2 import sql
 from bank.models.account import Account
@@ -57,19 +58,28 @@ class AccountRepository():
     #         SELECT * FROM Account WHERE account_number = %(accountNum)s
     #         """)
 
-    # def execute_withdrawal(accountNum, withdrawal):
-    #     with connection.cursor() as cursor:
-    #         cursor.execute("""
-    #         SELECT current_balance FROM Account WHERE account_number = %(accountNum)s
-    #         """)
-    #     current_balance = cursor.fetchone().current_balance
-    #     if (current_balance >= withdrawal):
-    #         cursor.execute("""
-    #         UPDATE Account
-    #         SET current_balance
-    #         VALUES (%(current_balance)s - %(withdrawal)s);
-    #         """)
-    #         connection.commit()
+    def execute_withdrawal(accountNum, withdrawal):
+        updated_balance = 0
+        with connection.cursor() as cursor:
+            cursor.execute("""
+             SELECT current_balance FROM Account WHERE account_number = %(accountNum)s
+             """, {
+                'accountNum': accountNum
+            })
+            current_balance = cursor.fetchone().current_balance
+            updated_balance = current_balance
+            if (current_balance >= withdrawal):
+                updated_balance = current_balance - withdrawal
+                cursor.execute("""
+                UPDATE Account
+                SET current_balance
+                VALUES (%(updated_balance)s)
+                WHERE account_number = %(accountNum)s
+                """,{
+                    'updated_balance':updated_balance,
+                    'accountNum': accountNum
+                })
+        return updated_balance
 
     # def execute_deposit(accountNum, deposit):
     #     with connection.cursor() as cursor:
