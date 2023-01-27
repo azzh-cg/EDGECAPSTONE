@@ -6,7 +6,7 @@ from bank.models.address import Address
 class AddressRepository():
     # establish a connection
     connection = psycopg2.connect(
-        host="localhost",
+        host="db-capstoneteam2-cohort1.ckokfd9swhyk.us-west-2.rds.amazonaws.com",
         database="capstone",
         user="postgres",
         password="password123",
