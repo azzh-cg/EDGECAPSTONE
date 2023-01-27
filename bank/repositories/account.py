@@ -45,11 +45,11 @@ class AccountRepository():
             }
             )
 
-    # def retrieve_all_accounts():
-    #     with connection.cursor() as cursor:
-    #         cursor.execute("""
-    #         SELECT * FROM Account
-    #         """)
+    def retrieve_all_accounts():
+        with connection.cursor() as cursor:
+             cursor.execute("""
+             SELECT * FROM Account
+             """)
 
     def get_by_number(self,account_num):
         with self.connection.cursor() as cursor:

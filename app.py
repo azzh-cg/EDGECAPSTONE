@@ -15,7 +15,7 @@ account_service = AccountService(account_repository, address_repository, custome
 
 @app.get('/api/accounts')
 async def retrieve_accounts():
-    responses = account_service.get_all_accounts()
+    responses = account_service.get_all()
     return responses
 
 @app.get('api/account/{account_number}')
@@ -26,6 +26,8 @@ async def retrieve_account_by_num(account_number):
 @app.post("/account/")
 async def create_account(account:Account):
     return account_service.add_new(account)
+
+
 
 # if __name__ == "__main__":
 #     uvicorn.run("app:app", host="127.0.0.1", port=8080, reload=True,
