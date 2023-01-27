@@ -26,8 +26,8 @@ class AccountService():
     def get_all(self):
         return self.account_repository.retrieve_all_accounts()
 
-    def withdrawal(self, account: Account, withdrawal_amt):
-        return self.account_repository.execute_withdrawal(account.account_number, withdrawal_amt)
+    def withdrawal(self, account_number: int, withdrawal_amt):
+        return self.account_repository.execute_withdrawal(account_number, withdrawal_amt)
 
     def deposit(self, account_number, deposit_amt):
         return self.account_repository.execute_deposit(account_number, deposit_amt)

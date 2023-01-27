@@ -25,10 +25,14 @@ async def retrieve_account_by_num(account_number):
 
 @app.post("/account/")
 async def create_account(account:Account):
+    if(account.current_balance < 25):
+        return Exception("Opening balance must be greater than or equal to $25")
     return account_service.add_new(account)
 
 @app.post("/account/withdrawal")
 async def withdrawal(account:Account, withdrawal_amt):
+    if(withdrawal_amt < 0):
+        return Exception("Withdrawal amount must be positive")
     return account_service.withdrawal(account, withdrawal_amt)
 
 @app.post("/account/deposit")
